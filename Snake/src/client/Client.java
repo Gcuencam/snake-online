@@ -3,21 +3,25 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package server;
+package client;
+
+import client.view.Login;
 
 /**
  *
  * @author gabrielcuenca
  */
-public class Server {
+public class Client {
 
     /* For main.Snake executation. */
     public static void main(String[] args) {
-
+        Login login = new Login();
+        login.setVisible(true);
     }
 
-    /* For only server executation. */
-    public Server() {
-
+    /* For only client executation. */
+    public Client() {
+        Login login = new Login();
+        login.setVisible(true);
     }
 }
