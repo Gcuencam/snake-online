@@ -16,23 +16,18 @@ import java.io.IOException;
 public class Client {
 
     /* For main.Snake executation. */
-    public static void main(String[] args) throws IOException {
+    public static void main(String[] args) {
         Login login = new Login();
         login.setVisible(true);
-        createClientSocket();
     }
 
     /* For only client executation. */
-    public Client() throws IOException {
+    public Client() {
         Login login = new Login();
         login.setVisible(true);
-        createClientSocket();
     }
     
-    private static void createClientSocket() throws IOException {
-        /* Debe inicializarse cuando el usuario pulse start, 
-           con los datos que el usuario haya metido.
-        */
-        ClientSocket cs = new ClientSocket();
+    public static void createClientSocket(String host, int port, String username) throws IOException {
+        ClientSocket cs = new ClientSocket(host, port);
     }
 }
