@@ -14,7 +14,7 @@ import java.net.*;
  */
 public class ClientSocket {
 
-    public static void main(String[] args) throws IOException {
+    public ClientSocket() throws IOException {
         Socket socket = null;
         PrintWriter out = null;
         BufferedReader in = null;
