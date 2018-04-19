@@ -14,20 +14,20 @@ import java.net.*;
  */
 public class ClientSocket {
 
-    public ClientSocket() throws IOException {
+    public ClientSocket(String host, int port) throws IOException {
         Socket socket = null;
         PrintWriter out = null;
         BufferedReader in = null;
 
         try {
-            socket = new Socket("localhost", 8000);
+            socket = new Socket(host, port);
             out = new PrintWriter(socket.getOutputStream(), true);
             in = new BufferedReader(new InputStreamReader(socket.getInputStream()));
         } catch (UnknownHostException e) {
-            System.err.println("Don't know about host: localhost");
+            System.err.println("Don't know about host: " + host);
             System.exit(1);
         } catch (IOException e) {
-            System.err.println("Couldn't get I/O for the connection to: localhost");
+            System.err.println("Couldn't get I/O for the connection to: " + host);
             System.exit(1);
         }
 
