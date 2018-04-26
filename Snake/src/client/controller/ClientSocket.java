@@ -1,4 +1,7 @@
 package client.controller;
+import client.ScoreWindow;
+import client.StartGameBoard;
+import client.view.Login;
 import java.io.*;
 import java.net.*;
 
