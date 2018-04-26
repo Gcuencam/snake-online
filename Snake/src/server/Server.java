@@ -3,23 +3,21 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package main;
-
-import client.Client;
-import server.Server;
+package server;
 
 /**
  *
  * @author gabrielcuenca
  */
-public class Snake {
+public class Server {
 
-    /**
-     * @param args the command line arguments
-     */
+    /* For main.Snake executation. */
     public static void main(String[] args) {
-        Server server = new Server();
-        Client client = new Client();
+
     }
-    
+
+    /* For only server executation. */
+    public Server() {
+
+    }
 }
