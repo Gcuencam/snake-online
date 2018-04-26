@@ -5,6 +5,9 @@
  */
 package server;
 
+import java.io.IOException;
+import server.controller.ServerSocketSnake;
+
 /**
  *
  * @author gabrielcuenca
@@ -12,12 +15,17 @@ package server;
 public class Server {
 
     /* For main.Snake executation. */
-    public static void main(String[] args) {
-
+    public static void main(String[] args) throws IOException {
+        createServerSocket();
     }
 
     /* For only server executation. */
-    public Server() {
-
+    public Server() throws IOException {
+        createServerSocket();
     }
+    
+    private static void createServerSocket() throws IOException{
+        ServerSocketSnake ss = new ServerSocketSnake();
+    }
+    
 }

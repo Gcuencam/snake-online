@@ -5,8 +5,9 @@
  */
 package main;
 
-import client.Client;
-import server.Server;
+import client.*;
+import java.io.IOException;
+import server.*;
 
 /**
  *
@@ -16,10 +17,12 @@ public class Snake {
 
     /**
      * @param args the command line arguments
+     * @throws java.io.IOException
      */
-    public static void main(String[] args) {
-        Server server = new Server();
-        Client client = new Client();
+    public static void main(String[] args) throws IOException {
+       // Server server = new Server();
+       //Client client = new Client();
     }
+    
     
 }
