@@ -15,7 +15,7 @@ import javax.swing.JTextField;
  *
  * @author cvs
  */
-public class score_window extends javax.swing.JFrame implements Observer{
+public class ScoreWindow extends javax.swing.JFrame implements Observer{
 
     //private List<Jugador> listaJugadores;
     private PlayerList listaJugadores;
@@ -23,12 +23,17 @@ public class score_window extends javax.swing.JFrame implements Observer{
     private Player jugadorPrincipal;
     
     
-    public score_window(String userName) {
+    public ScoreWindow(String userName) {
         this.listaJugadores=new PlayerList();
         Counter c=new Counter();
         this.jugadorPrincipal=new Player(userName, c);
+        this.setPuntuacion(this.jugadorPrincipal.getScore());
+        this.getJugadores();
+        this.setJugadores(this);
+        setListData2(this , this.ListaJugadoresInterface);
+        this.setNombreJugador(this.jugadorPrincipal);
         initComponents();
-        
+        this.setVisible(true);
     }
 
     @SuppressWarnings("unchecked")
@@ -140,7 +145,7 @@ public class score_window extends javax.swing.JFrame implements Observer{
         System.out.println("Print 4 " + jugadoresList.getFocusListeners().toString());
     }
     
-    public void setJugadores(score_window w ){
+    public void setJugadores(ScoreWindow w ){
         System.out.println("antes del for ");
         //w.listaJugadores=new ArrayList();
         w.listaJugadores=new PlayerList();
@@ -159,7 +164,7 @@ public class score_window extends javax.swing.JFrame implements Observer{
         System.out.println("lista jugadores 3 " + w.ListaJugadoresInterface);
     }
     
-    private static void setListData2(score_window w , Vector<String> listaJ){
+    private static void setListData2(ScoreWindow w , Vector<String> listaJ){
         w.jugadoresList.setListData(listaJ);
     }
      
@@ -168,7 +173,7 @@ public class score_window extends javax.swing.JFrame implements Observer{
      */
     /*public static void main(String args[]) {
        
-        score_window window=new score_window();
+        ScoreWindow window=new ScoreWindow();
         //String punt= Integer.toString(puntuacion.getCounter());
         window.setPuntuacion(window.jugadorPrincipal.getScore());
         window.getJugadores();
