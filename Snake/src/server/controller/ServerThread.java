@@ -9,10 +9,6 @@ import java.net.*;
 import java.io.*;
 import server.ServerProtocol;
 
-/**
- *
- * @author gabrielcuenca
- */
 public class ServerThread extends Thread {
 
     private Socket socket = null;
@@ -25,17 +21,18 @@ public class ServerThread extends Thread {
     public void run() {
         try {
             PrintWriter out = new PrintWriter(socket.getOutputStream(), true);
+            out.println("Te has conectado correctamente puto cliente.");
             BufferedReader in = new BufferedReader(
                     new InputStreamReader(
                             socket.getInputStream()));
 
-            String inputLine, outputLine;
-            ServerProtocol sp = new ServerProtocol();
-            outputLine = sp.processInput(null);
+            String inputLine = in.readLine();
+            ServerProtocol kp = new ServerProtocol();
+            String outputLine = kp.processInput(inputLine);
             out.println(outputLine);
 
             while ((inputLine = in.readLine()) != null) {
-                outputLine = sp.processInput(inputLine);
+                outputLine = kp.processInput(inputLine);
                 out.println(outputLine);
                 if (outputLine.equals("Bye")) {
                     break;

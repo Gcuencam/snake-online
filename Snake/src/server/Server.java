@@ -6,7 +6,7 @@
 package server;
 
 import java.io.IOException;
-import java.net.ServerSocket;
+import server.controller.ServerSocketSnake;
 
 /**
  *
@@ -25,7 +25,7 @@ public class Server {
     }
     
     private static void createServerSocket() throws IOException{
-        ServerSocket ss = new ServerSocket();
+        ServerSocketSnake ss = new ServerSocketSnake();
     }
     
 }
