@@ -29,6 +29,7 @@ public class Client {
     
     public static void createClientSocket(String host, int port, String username) throws IOException {
         ClientSocket cs = new ClientSocket(host, port);
+        cs.start();
     }
     
     
