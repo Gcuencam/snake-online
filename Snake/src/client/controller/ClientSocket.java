@@ -12,6 +12,7 @@ public class ClientSocket extends Thread {
 
     private String host;
     private int port;
+    private String username;
 
     public void run() {
         try {
@@ -21,9 +22,10 @@ public class ClientSocket extends Thread {
         }
     }
 
-    public ClientSocket(String host, int port) throws IOException {
+    public ClientSocket(String host, int port, String username) throws IOException {
         this.host = host;
         this.port = port;
+        this.username = username;
     }
 
     public void initSocket() throws IOException {
@@ -47,6 +49,7 @@ public class ClientSocket extends Thread {
         }
         
         StartGameBoard gb = new StartGameBoard();
+        ScoreWindow sw = new ScoreWindow(this.username);
 
         BufferedReader stdIn = new BufferedReader(new InputStreamReader(System.in));
         String fromServer;

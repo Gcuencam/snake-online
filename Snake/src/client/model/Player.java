@@ -12,29 +12,29 @@ import client.model.Counter;
  * @author cvs
  */
 public class Player {
+
     private Counter score;
     private String namePlayer;
-    
-    public Player(String n , Counter p){
-        this.namePlayer=n;
-        this.score=p;
+
+    public Player(String n) {
+        this.namePlayer = n;
+        this.score = new Counter();
     }
 
-    
-    public String getPlayerName(){
+    public String getPlayerName() {
         return this.namePlayer;
     }
-    
-    public void setPlayerName(String n){
-        this.namePlayer=n;
+
+    public void setPlayerName(String n) {
+        this.namePlayer = n;
     }
-    
-    public int getScore(){
+
+    public int getScore() {
         return this.score.getCounter();
     }
-    
-    public void setScore(Counter c){
+
+    public void setScore(Counter c) {
         this.score.setCounter(c);
     }
-    
+
 }

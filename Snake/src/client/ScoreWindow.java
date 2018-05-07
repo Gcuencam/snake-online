@@ -3,36 +3,32 @@ package client;
 import client.model.Player;
 import client.model.Counter;
 import client.model.PlayerList;
-import java.awt.Component;
-import java.util.ArrayList;
-import java.util.List;
 import java.util.Observable;
 import java.util.Observer;
 import java.util.Vector;
-import javax.swing.JTextField;
 
 /**
  *
  * @author cvs
  */
-public class ScoreWindow extends javax.swing.JFrame implements Observer{
+public class ScoreWindow extends javax.swing.JFrame implements Observer {
 
-    //private List<Jugador> listaJugadores;
-    private PlayerList listaJugadores;
-    private Vector<String> ListaJugadoresInterface;
-    private Player jugadorPrincipal;
-    
-    
+    private PlayerList playersList;
+    private Vector<String> playersListInterface;
+    private Player mainPlayer;
+
     public ScoreWindow(String userName) {
-        this.listaJugadores=new PlayerList();
-        Counter c=new Counter();
-        this.jugadorPrincipal=new Player(userName, c);
-        this.setPuntuacion(this.jugadorPrincipal.getScore());
+        initComponents();
+        this.playersList = new PlayerList();
+        Counter c = new Counter();
+        this.mainPlayer = new Player(userName);
+        System.out.println(this.mainPlayer);
+        System.out.println(this.mainPlayer.getScore());
+        this.setPuntuacion(this.mainPlayer.getScore());
         this.getJugadores();
         this.setJugadores(this);
-        setListData2(this , this.ListaJugadoresInterface);
-        this.setNombreJugador(this.jugadorPrincipal);
-        initComponents();
+        setListData2(this, this.playersListInterface);
+        this.setNombreJugador(this.mainPlayer);
         this.setVisible(true);
     }
 
@@ -113,80 +109,94 @@ public class ScoreWindow extends javax.swing.JFrame implements Observer{
     }// </editor-fold>//GEN-END:initComponents
 
     private void jugadorTextInputActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jugadorTextInputActionPerformed
-        
+
     }//GEN-LAST:event_jugadorTextInputActionPerformed
 
     private void puntuacionTextInputActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_puntuacionTextInputActionPerformed
-        
+
     }//GEN-LAST:event_puntuacionTextInputActionPerformed
-    
-    
-    public String getNombreJugador(){
+
+    public String getNombreJugador() {
         return jugadorTextInput.getText();
     }
-    
-    public void setNombreJugador(Player jug){
-        this.jugadorPrincipal=jug;
+
+    public void setNombreJugador(Player jug) {
+        this.mainPlayer = jug;
         jugadorTextInput.setText(jug.getPlayerName());
     }
-    
-    public String getPuntuacion(){
+
+    public String getPuntuacion() {
         return puntuacionTextInput.getText();
     }
-    
-    public void setPuntuacion(int c){
+
+    public void setPuntuacion(int c) {
         puntuacionTextInput.setText(Integer.toString(c));
+
     }
-    
-    public void getJugadores(){
-        System.out.println("Print 1 " + jugadoresList.getComponentListeners().toString());  
+
+    public void getJugadores() {
+        System.out.println("Print 1 " + jugadoresList.getComponentListeners().toString());
         System.out.println("Print 2 " + jugadoresList.getComponentCount());
         System.out.println("Print 3 " + jugadoresList.getComponentListeners().toString());
         System.out.println("Print 4 " + jugadoresList.getFocusListeners().toString());
     }
-    
-    public void setJugadores(ScoreWindow w ){
+
+    public void setJugadores(ScoreWindow w) {
         System.out.println("antes del for ");
         //w.listaJugadores=new ArrayList();
-        w.listaJugadores=new PlayerList();
-        w.ListaJugadoresInterface=new Vector();
-        w.listaJugadores.addJugador(this.jugadorPrincipal);
-        w.ListaJugadoresInterface.add(this.jugadorPrincipal.getPlayerName()+"....................................................."+Integer.toString(this.jugadorPrincipal.getScore()));
-        System.out.println("lista jugadores 1 " + w.listaJugadores);
-        for (int i=0; i<15 ; i++){
-            Counter cont= new Counter();
-            Player jugador= new Player("Player-"+ Integer.toString(i) , cont); 
+        w.playersList = new PlayerList();
+        w.playersListInterface = new Vector();
+        w.playersList.addJugador(this.mainPlayer);
+        w.playersListInterface.add(this.mainPlayer.getPlayerName() + "....................................................." + Integer.toString(this.mainPlayer.getScore()));
+        System.out.println("lista jugadores 1 " + w.playersList);
+        for (int i = 0; i < 15; i++) {
+            /* Counter cont = new Counter();
+            Player jugador = new Player("Player-" + Integer.toString(i), cont);
             w.listaJugadores.addJugador(jugador);
-            w.ListaJugadoresInterface.add(jugador.getPlayerName()+"....................................................."+jugador.getScore());
-        }
-        jugadoresList.setListData(w.listaJugadores.getPlayerList());
-        System.out.println("lista jugadores 2 " + w.listaJugadores);
-        System.out.println("lista jugadores 3 " + w.ListaJugadoresInterface);
+            w.ListaJugadoresInterface.add(jugador.getPlayerName() + "....................................................." + jugador.getScore());
+        */ }
+        jugadoresList.setListData(w.playersList.getPlayerList());
+        System.out.println("lista jugadores 2 " + w.playersList);
+        System.out.println("lista jugadores 3 " + w.playersListInterface);
     }
-    
-    private static void setListData2(ScoreWindow w , Vector<String> listaJ){
+
+    private static void setListData2(ScoreWindow w, Vector<String> listaJ) {
         w.jugadoresList.setListData(listaJ);
     }
-     
+
     /**
      * @param args the command line arguments
      */
-    /*public static void main(String args[]) {
-       
-        ScoreWindow window=new ScoreWindow();
-        //String punt= Integer.toString(puntuacion.getCounter());
-        window.setPuntuacion(window.jugadorPrincipal.getScore());
-        window.getJugadores();
-        window.setJugadores(window);
+    public static void main(String args[]) {
+        /* Set the Nimbus look and feel */
+        //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
+        /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
+         * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html 
+         */
+        try {
+            for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
+                if ("Nimbus".equals(info.getName())) {
+                    javax.swing.UIManager.setLookAndFeel(info.getClassName());
+                    break;
+                }
+            }
+        } catch (ClassNotFoundException ex) {
+            java.util.logging.Logger.getLogger(ScoreWindow.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+        } catch (InstantiationException ex) {
+            java.util.logging.Logger.getLogger(ScoreWindow.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+        } catch (IllegalAccessException ex) {
+            java.util.logging.Logger.getLogger(ScoreWindow.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+        } catch (javax.swing.UnsupportedLookAndFeelException ex) {
+            java.util.logging.Logger.getLogger(ScoreWindow.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+        }
+        //</editor-fold>
+        //</editor-fold>
+
         /* Create and display the form */
-        //setListData2(window , window.ListaJugadoresInterface);
-        //window.setNombreJugador(window.jugadorPrincipal);
-        //java.awt.EventQueue.invokeLater(new Runnable() {
-        //    public void run() {
-        //        window.setVisible(true);
-        //    }
-        //});  
-    //}
+        java.awt.EventQueue.invokeLater(new Runnable() {
+            public void run() {}
+        }); 
+    }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JScrollPane jScrollPane1;
