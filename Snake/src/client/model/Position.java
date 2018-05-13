@@ -1,22 +1,26 @@
 package client.model;
 
-public class Position { 
-    public  int x; 
-    public  int y; 
+public class Position {
 
-    public Position(int x, int y) { 
-      this.x = x; 
-      this.y = y; 
-    } 
-    public void changeSnakePos(int x, int y){
-        this.x = x; 
-        this.y = y; 
+    public int x;
+    public int y;
+
+    public Position(int x, int y) {
+        this.x = x;
+        this.y = y;
     }
-    public int getX(){
+
+    public void changeSnakePos(int x, int y) {
+        this.x = x;
+        this.y = y;
+    }
+
+    public int getX() {
         return x;
     }
-    public int getY(){
+
+    public int getY() {
         return y;
     }
-		  
-} 
+
+}

@@ -3,7 +3,6 @@ package client.view;
 import client.model.Player;
 import client.model.Counter;
 import client.model.PlayerList;
-import client.view.GameWindow;
 import java.awt.GraphicsDevice;
 import java.awt.GraphicsEnvironment;
 import java.awt.Rectangle;
@@ -38,9 +37,9 @@ public class ScoreWindow extends javax.swing.JFrame implements Observer {
         setListData2(this, this.playersListInterface);
         this.setNombreJugador(this.mainPlayer);
         this.setVisible(true);
-                
+
     }
-    
+
     @Override
     public void update(Observable o, Object arg) {
         this.mainPlayer = Player.getSingletonInstance();
@@ -176,8 +175,9 @@ public class ScoreWindow extends javax.swing.JFrame implements Observer {
 
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
-            public void run() {}
-        }); 
+            public void run() {
+            }
+        });
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

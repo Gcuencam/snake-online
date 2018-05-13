@@ -22,12 +22,12 @@ public class Player extends Observable {
     }
 
     public static Player createSingletonInstance(String n) {
-        if (player == null){
+        if (player == null) {
             player = new Player(n);
         }
         return player;
     }
-    
+
     public static Player getSingletonInstance() {
         return player;
     }
@@ -47,7 +47,7 @@ public class Player extends Observable {
     public void setScore(Counter c) {
         this.score.setCounter(c);
     }
-    
+
     public void incrementScore() {
         this.score.increment();
         this.setChanged();

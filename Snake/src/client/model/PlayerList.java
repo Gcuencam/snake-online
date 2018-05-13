@@ -12,30 +12,27 @@ import java.util.Vector;
  * @author cvs
  */
 public class PlayerList {
+
     Vector<Player> playerList;
-    
-    
-    public PlayerList(){
-        this.playerList=new Vector();
+
+    public PlayerList() {
+        this.playerList = new Vector();
     }
-    
-    public void addJugador(Player player){
+
+    public void addJugador(Player player) {
         this.playerList.add(player);
     }
-    
-    public void addPlayerString(Player player){
+
+    public void addPlayerString(Player player) {
         this.playerList.add(player);
     }
-    
-    public void setPlayerList(Vector<Player> playerList){
-        this.playerList=playerList;
+
+    public void setPlayerList(Vector<Player> playerList) {
+        this.playerList = playerList;
     }
-    
-    public Vector<Player> getPlayerList(){
+
+    public Vector<Player> getPlayerList() {
         return this.playerList;
     }
-    
-    
-    
-    
+
 }

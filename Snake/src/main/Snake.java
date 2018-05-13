@@ -21,7 +21,7 @@ public class Snake {
      */
     public static void main(String[] args) throws IOException {
        // Server server = new Server();
-       //Client client = new Client();
+       // Client client = new Client();
     }
     
     

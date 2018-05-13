@@ -3,7 +3,6 @@ package client.controller;
 import client.view.ScoreWindow;
 import client.view.GameWindow;
 import client.model.Player;
-import client.view.Login;
 import java.io.*;
 import java.net.*;
 import java.util.logging.Level;
@@ -49,12 +48,12 @@ public class ClientSocket extends Thread {
             System.err.println("Couldn't get I/O for the connection to: " + host);
             System.exit(1);
         }
-        
+
         player = Player.createSingletonInstance(username);
+        ScoreWindow sw = new ScoreWindow();
         GameWindow gb = new GameWindow();
         gb.setResizable(false);
-        gb.setVisible(true);        
-        ScoreWindow sw = new ScoreWindow();
+        gb.setVisible(true);
         player.addObserver(sw);
 
         BufferedReader stdIn = new BufferedReader(new InputStreamReader(System.in));

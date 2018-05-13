@@ -26,11 +26,10 @@ public class Client {
         Login login = new Login();
         login.setVisible(true);
     }
-    
+
     public static void createClientSocket(String host, int port, String username) throws IOException {
         ClientSocket cs = new ClientSocket(host, port, username);
         cs.start();
     }
-    
-    
+
 }

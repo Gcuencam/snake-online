@@ -23,9 +23,9 @@ public class Server {
     public Server() throws IOException {
         createServerSocket();
     }
-    
-    private static void createServerSocket() throws IOException{
+
+    private static void createServerSocket() throws IOException {
         ServerSocketSnake ss = new ServerSocketSnake();
     }
-    
+
 }

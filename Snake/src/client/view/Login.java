@@ -151,7 +151,7 @@ public class Login extends javax.swing.JFrame {
             Client.createClientSocket(inputIp.getText(), Integer.parseInt(inputPort.getText()), inputUserName.getText());
         } catch (IOException ex) {
             Logger.getLogger(Login.class.getName()).log(Level.SEVERE, null, ex);
-        } 
+        }
     }//GEN-LAST:event_startButtonActionPerformed
 
     private void inputPortActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_inputPortActionPerformed
