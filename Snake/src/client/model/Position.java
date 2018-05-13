@@ -8,7 +8,7 @@ public class Position {
       this.x = x; 
       this.y = y; 
     } 
-    public void ChangePos(int x, int y){
+    public void changeSnakePos(int x, int y){
         this.x = x; 
         this.y = y; 
     }

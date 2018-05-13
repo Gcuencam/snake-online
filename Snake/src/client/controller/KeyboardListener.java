@@ -8,11 +8,10 @@ import static java.awt.event.KeyEvent.VK_RIGHT;
 import static java.awt.event.KeyEvent.VK_UP;
 
  public class KeyboardListener extends KeyAdapter{
- 	
     public void keyPressed(KeyEvent e){
         switch(e.getKeyCode()){
             case VK_RIGHT: 
-                //si no es la posición opuesta
+                //if the position if not the oposite one
                 if(ThreadsController.directionSnake!=2) 
                         ThreadsController.directionSnake=1;
                 break;
