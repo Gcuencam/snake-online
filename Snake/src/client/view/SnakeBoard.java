@@ -1,6 +1,8 @@
 package client.view;
 
+import client.controller.ThreadsController;
 import client.model.Cell;
+import client.model.Position;
 import java.awt.BorderLayout;
 import java.awt.GridLayout;
 import java.awt.Label;
@@ -34,11 +36,13 @@ public class SnakeBoard extends JPanel{
                 snakeBoard.add(board.get(i).get(j).cell);
             }
         }
-        
+        snakeBoard.setFocusable(true);
         this.setLayout(new BorderLayout());      
         this.add(snakeBoard, BorderLayout.CENTER);
-        JButton finJuego = new JButton("Finalizar Juego");
-        this.add(finJuego, BorderLayout.SOUTH);
+        JButton finalButton = new JButton("Finalizar Juego");
+        finalButton.setFocusable(false);
+        this.add(finalButton, BorderLayout.SOUTH);
+
 
     }
     

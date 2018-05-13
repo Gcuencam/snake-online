@@ -7,9 +7,9 @@ import client.view.SnakeBoard;
 
 public class ThreadsController extends Thread {
     ArrayList<ArrayList<Cell>> Cells = new ArrayList<ArrayList<Cell>>();
-    Position headSnakePos;
-    int sizeSnake=2;
     long speed = 100;
+    Position SnakeHead;
+    int sizeSnake=2;
     public static int directionSnake ;
 
     ArrayList<Position> positions = new ArrayList<Position>();
@@ -20,11 +20,11 @@ public class ThreadsController extends Thread {
         //Get all the threads
         Cells = SnakeBoard.board;
 
-        headSnakePos=new Position(positionDepart.x,positionDepart.y);
+        SnakeHead=new Position(positionDepart.x,positionDepart.y);
         directionSnake = 1;
 
         //Pointer
-        Position headPos = new Position(headSnakePos.getX(),headSnakePos.getY());
+        Position headPos = new Position(SnakeHead.getX(),SnakeHead.getY());
         positions.add(headPos);
 
         foodPosition= new Position(SnakeBoard.cols-2,SnakeBoard.rows-4);
@@ -107,30 +107,32 @@ public class ThreadsController extends Thread {
     private void moveInterne(int dir){
         switch(dir){
             case 4:
-                headSnakePos.ChangePos(headSnakePos.x,(headSnakePos.y+1)%20);
-                positions.add(new Position(headSnakePos.x,headSnakePos.y));
+                SnakeHead.ChangePos(SnakeHead.x,(SnakeHead.y+1)%20);
+                positions.add(new Position(SnakeHead.x,SnakeHead.y));
+                System.out.println("move interne position");
                 break;
+                
             case 3:
-                if(headSnakePos.y-1<0){
-                    headSnakePos.ChangePos(headSnakePos.x,19);
+                if(SnakeHead.y-1<0){
+                    SnakeHead.ChangePos(SnakeHead.x,19);
                  }
                 else{
-                    headSnakePos.ChangePos(headSnakePos.x,Math.abs(headSnakePos.y-1)%20);
+                    SnakeHead.ChangePos(SnakeHead.x,Math.abs(SnakeHead.y-1)%20);
                 }
-                positions.add(new Position(headSnakePos.x,headSnakePos.y));
+                positions.add(new Position(SnakeHead.x,SnakeHead.y));
                 break;
             case 2:
-                if(headSnakePos.x-1<0){
-                    headSnakePos.ChangePos(19,headSnakePos.y);
+                if(SnakeHead.x-1<0){
+                    SnakeHead.ChangePos(19,SnakeHead.y);
                 }
                 else{
-                    headSnakePos.ChangePos(Math.abs(headSnakePos.x-1)%20,headSnakePos.y);
+                    SnakeHead.ChangePos(Math.abs(SnakeHead.x-1)%20,SnakeHead.y);
                 } 
-               positions.add(new Position(headSnakePos.x,headSnakePos.y));
+               positions.add(new Position(SnakeHead.x,SnakeHead.y));
                break;
             case 1:
-                headSnakePos.ChangePos(Math.abs(headSnakePos.x+1)%20,headSnakePos.y);
-                positions.add(new Position(headSnakePos.x,headSnakePos.y));
+                SnakeHead.ChangePos(Math.abs(SnakeHead.x+1)%20,SnakeHead.y);
+                positions.add(new Position(SnakeHead.x,SnakeHead.y));
                 break;
         }
     }
