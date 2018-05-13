@@ -1,7 +1,8 @@
 package client.controller;
 
-import client.ScoreWindow;
+import client.view.ScoreWindow;
 import client.view.GameWindow;
+import client.model.Player;
 import client.view.Login;
 import java.io.*;
 import java.net.*;
@@ -13,6 +14,7 @@ public class ClientSocket extends Thread {
     private String host;
     private int port;
     private String username;
+    private Player player;
 
     public void run() {
         try {
@@ -48,18 +50,18 @@ public class ClientSocket extends Thread {
             System.exit(1);
         }
         
+        player = Player.createSingletonInstance(username);
         GameWindow gb = new GameWindow();
         gb.setResizable(false);
-        gb.setVisible(true);
-        
-        ScoreWindow sw = new ScoreWindow(this.username);
+        gb.setVisible(true);        
+        ScoreWindow sw = new ScoreWindow();
+        player.addObserver(sw);
 
         BufferedReader stdIn = new BufferedReader(new InputStreamReader(System.in));
         String fromServer;
         String fromUser;
 
         while ((fromServer = in.readLine()) != null) {
-            System.out.println("Server: " + fromServer);
             if (fromServer.equals("Bye.")) {
                 break;
             }

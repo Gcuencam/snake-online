@@ -5,20 +5,31 @@
  */
 package client.model;
 
-import client.model.Counter;
+import java.util.Observable;
 
 /**
- *
- * @author cvs
+ * Class that implements the singleton and observable pattern.
  */
-public class Player {
+public class Player extends Observable {
 
-    private Counter score;
+    private final Counter score;
     private String namePlayer;
+    private static Player player;
 
-    public Player(String n) {
+    private Player(String n) {
         this.namePlayer = n;
         this.score = new Counter();
+    }
+
+    public static Player createSingletonInstance(String n) {
+        if (player == null){
+            player = new Player(n);
+        }
+        return player;
+    }
+    
+    public static Player getSingletonInstance() {
+        return player;
     }
 
     public String getPlayerName() {
@@ -35,6 +46,12 @@ public class Player {
 
     public void setScore(Counter c) {
         this.score.setCounter(c);
+    }
+    
+    public void incrementScore() {
+        this.score.increment();
+        this.setChanged();
+        this.notifyObservers();
     }
 
 }

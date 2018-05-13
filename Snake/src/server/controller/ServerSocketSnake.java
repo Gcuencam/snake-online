@@ -9,9 +9,9 @@ public class ServerSocketSnake {
         boolean listening = true;
         try {
             serverSocket = new ServerSocket(8000);
-	    System.out.println("estoy después de crear el socket");
+	    System.out.println("Socket creado.");
         } catch (IOException e) {
-            System.err.println("Could not listen on port: 4444.");
+            System.err.println("No ha sido posible realizar la conexión en el puerto 8000.");
             System.exit(1);
         }
         

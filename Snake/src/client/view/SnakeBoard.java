@@ -14,6 +14,7 @@ public class SnakeBoard extends JPanel{
     public static int rows = 20;
     public static int cols = 20;
     public static int white = 2;
+    
  
     public SnakeBoard() {
         this.setLayout(new BorderLayout());      

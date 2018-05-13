@@ -5,6 +5,7 @@ import java.awt.event.KeyListener;
 import javax.swing.JFrame;
 import client.model.Position;
 import client.controller.KeyboardListener;
+import client.model.Player;
 
 //The game window itself, it starts the game
 public class GameWindow extends JFrame{
@@ -12,6 +13,7 @@ public class GameWindow extends JFrame{
         //Customize Game Window (the JFrame)
         this.setTitle("Snake Game");
         this.setBounds(350, 100, 500, 500);
+        this.setLocationRelativeTo(null);
         this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE); 
         
         SnakeBoard mainBoard = new SnakeBoard();

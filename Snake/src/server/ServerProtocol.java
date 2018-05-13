@@ -37,7 +37,6 @@ public class ServerProtocol {
             
             
         }
-        // System.out.println("vas para " + theOutput);
         return theOutput;
     }
 }

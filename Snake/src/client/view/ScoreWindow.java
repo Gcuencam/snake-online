@@ -1,8 +1,12 @@
-package client;
+package client.view;
 
 import client.model.Player;
 import client.model.Counter;
 import client.model.PlayerList;
+import client.view.GameWindow;
+import java.awt.GraphicsDevice;
+import java.awt.GraphicsEnvironment;
+import java.awt.Rectangle;
 import java.util.Observable;
 import java.util.Observer;
 import java.util.Vector;
@@ -17,58 +21,60 @@ public class ScoreWindow extends javax.swing.JFrame implements Observer {
     private Vector<String> playersListInterface;
     private Player mainPlayer;
 
-    public ScoreWindow(String userName) {
+    public ScoreWindow() {
         initComponents();
+        GraphicsEnvironment ge = GraphicsEnvironment.getLocalGraphicsEnvironment();
+        GraphicsDevice defaultScreen = ge.getDefaultScreenDevice();
+        Rectangle rect = defaultScreen.getDefaultConfiguration().getBounds();
+        int x = (int) rect.getMaxX() - this.getWidth();
+        int y = 0;
+        this.setLocation(x, y);
         this.playersList = new PlayerList();
         Counter c = new Counter();
-        this.mainPlayer = new Player(userName);
-        System.out.println(this.mainPlayer);
-        System.out.println(this.mainPlayer.getScore());
+        this.mainPlayer = Player.getSingletonInstance();
         this.setPuntuacion(this.mainPlayer.getScore());
         this.getJugadores();
         this.setJugadores(this);
         setListData2(this, this.playersListInterface);
         this.setNombreJugador(this.mainPlayer);
         this.setVisible(true);
+                
+    }
+    
+    @Override
+    public void update(Observable o, Object arg) {
+        this.mainPlayer = Player.getSingletonInstance();
+        this.setPuntuacion(this.mainPlayer.getScore());
+        this.setJugadores(this);
+        setListData2(this, this.playersListInterface);
     }
 
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        jugadorLabel = new javax.swing.JLabel();
-        jugadorTextInput = new javax.swing.JTextField();
-        puntuacionLabel = new javax.swing.JLabel();
-        puntuacionTextInput = new javax.swing.JTextField();
         jScrollPane1 = new javax.swing.JScrollPane();
         jugadoresList = new javax.swing.JList();
+        labelPlayer = new javax.swing.JLabel();
+        labelPlayerScore = new javax.swing.JLabel();
+        jLabel3 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
-        jugadorLabel.setFont(new java.awt.Font("Tahoma", 0, 24)); // NOI18N
-        jugadorLabel.setText("Jugador : ");
-
-        jugadorTextInput.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
-        jugadorTextInput.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jugadorTextInputActionPerformed(evt);
-            }
-        });
-
-        puntuacionLabel.setFont(new java.awt.Font("Tahoma", 0, 24)); // NOI18N
-        puntuacionLabel.setText("Puntuacion : ");
-
-        puntuacionTextInput.setEditable(false);
-        puntuacionTextInput.setFont(new java.awt.Font("Palatino Linotype", 0, 24)); // NOI18N
-        puntuacionTextInput.setHorizontalAlignment(javax.swing.JTextField.RIGHT);
-        puntuacionTextInput.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                puntuacionTextInputActionPerformed(evt);
-            }
-        });
-
         jugadoresList.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
         jScrollPane1.setViewportView(jugadoresList);
+
+        labelPlayer.setFont(new java.awt.Font("Lucida Grande", 0, 16)); // NOI18N
+        labelPlayer.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        labelPlayer.setText("Player");
+
+        labelPlayerScore.setFont(new java.awt.Font("Lucida Grande", 0, 16)); // NOI18N
+        labelPlayerScore.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        labelPlayerScore.setText("jLabel2");
+
+        jLabel3.setFont(new java.awt.Font("Lucida Grande", 0, 16)); // NOI18N
+        jLabel3.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jLabel3.setText("-");
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -76,31 +82,26 @@ public class ScoreWindow extends javax.swing.JFrame implements Observer {
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                 .addContainerGap()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 415, Short.MAX_VALUE)
-                    .addGroup(layout.createSequentialGroup()
-                        .addComponent(puntuacionLabel)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(puntuacionTextInput, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(0, 0, Short.MAX_VALUE))
-                    .addGroup(layout.createSequentialGroup()
-                        .addComponent(jugadorLabel)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(jugadorTextInput)))
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 273, Short.MAX_VALUE)
                 .addContainerGap())
+            .addGroup(layout.createSequentialGroup()
+                .addGap(69, 69, 69)
+                .addComponent(labelPlayer)
+                .addGap(18, 18, 18)
+                .addComponent(jLabel3)
+                .addGap(18, 18, 18)
+                .addComponent(labelPlayerScore)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addContainerGap()
+                .addContainerGap(17, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jugadorTextInput)
-                    .addComponent(jugadorLabel))
-                .addGap(18, 18, 18)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(puntuacionLabel)
-                    .addComponent(puntuacionTextInput, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(18, 18, 18)
+                    .addComponent(labelPlayer)
+                    .addComponent(labelPlayerScore)
+                    .addComponent(jLabel3))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 333, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap())
         );
@@ -108,56 +109,37 @@ public class ScoreWindow extends javax.swing.JFrame implements Observer {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void jugadorTextInputActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jugadorTextInputActionPerformed
-
-    }//GEN-LAST:event_jugadorTextInputActionPerformed
-
-    private void puntuacionTextInputActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_puntuacionTextInputActionPerformed
-
-    }//GEN-LAST:event_puntuacionTextInputActionPerformed
-
     public String getNombreJugador() {
-        return jugadorTextInput.getText();
+        return labelPlayer.getText();
     }
 
     public void setNombreJugador(Player jug) {
         this.mainPlayer = jug;
-        jugadorTextInput.setText(jug.getPlayerName());
+        labelPlayer.setText(jug.getPlayerName());
     }
 
     public String getPuntuacion() {
-        return puntuacionTextInput.getText();
+        return labelPlayerScore.getText();
     }
 
     public void setPuntuacion(int c) {
-        puntuacionTextInput.setText(Integer.toString(c));
+        labelPlayerScore.setText(Integer.toString(c));
 
     }
 
     public void getJugadores() {
-        System.out.println("Print 1 " + jugadoresList.getComponentListeners().toString());
+        /*System.out.println("Print 1 " + jugadoresList.getComponentListeners().toString());
         System.out.println("Print 2 " + jugadoresList.getComponentCount());
         System.out.println("Print 3 " + jugadoresList.getComponentListeners().toString());
-        System.out.println("Print 4 " + jugadoresList.getFocusListeners().toString());
+        System.out.println("Print 4 " + jugadoresList.getFocusListeners().toString());*/
     }
 
     public void setJugadores(ScoreWindow w) {
-        System.out.println("antes del for ");
-        //w.listaJugadores=new ArrayList();
         w.playersList = new PlayerList();
         w.playersListInterface = new Vector();
         w.playersList.addJugador(this.mainPlayer);
-        w.playersListInterface.add(this.mainPlayer.getPlayerName() + "....................................................." + Integer.toString(this.mainPlayer.getScore()));
-        System.out.println("lista jugadores 1 " + w.playersList);
-        for (int i = 0; i < 15; i++) {
-            /* Counter cont = new Counter();
-            Player jugador = new Player("Player-" + Integer.toString(i), cont);
-            w.listaJugadores.addJugador(jugador);
-            w.ListaJugadoresInterface.add(jugador.getPlayerName() + "....................................................." + jugador.getScore());
-        */ }
+        w.playersListInterface.add(this.mainPlayer.getPlayerName() + " - " + Integer.toString(this.mainPlayer.getScore()));
         jugadoresList.setListData(w.playersList.getPlayerList());
-        System.out.println("lista jugadores 2 " + w.playersList);
-        System.out.println("lista jugadores 3 " + w.playersListInterface);
     }
 
     private static void setListData2(ScoreWindow w, Vector<String> listaJ) {
@@ -199,16 +181,11 @@ public class ScoreWindow extends javax.swing.JFrame implements Observer {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JLabel jLabel3;
     private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JLabel jugadorLabel;
-    private javax.swing.JTextField jugadorTextInput;
     private javax.swing.JList jugadoresList;
-    private javax.swing.JLabel puntuacionLabel;
-    private javax.swing.JTextField puntuacionTextInput;
+    private javax.swing.JLabel labelPlayer;
+    private javax.swing.JLabel labelPlayerScore;
     // End of variables declaration//GEN-END:variables
 
-    @Override
-    public void update(Observable o, Object o1) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
 }
