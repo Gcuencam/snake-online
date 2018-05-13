@@ -1,7 +1,7 @@
 package client.controller;
 
 import client.ScoreWindow;
-import client.StartGameBoard;
+import client.view.GameWindow;
 import client.view.Login;
 import java.io.*;
 import java.net.*;
@@ -48,7 +48,10 @@ public class ClientSocket extends Thread {
             System.exit(1);
         }
         
-        StartGameBoard gb = new StartGameBoard();
+        GameWindow gb = new GameWindow();
+        gb.setResizable(false);
+        gb.setVisible(true);
+        
         ScoreWindow sw = new ScoreWindow(this.username);
 
         BufferedReader stdIn = new BufferedReader(new InputStreamReader(System.in));

@@ -6,7 +6,6 @@
 package client.view;
 
 import client.Client;
-import client.StartGameBoard;
 import java.io.IOException;
 import java.util.logging.Level;
 import java.util.logging.Logger;

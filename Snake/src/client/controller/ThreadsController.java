@@ -3,7 +3,7 @@ package client.controller;
 import java.util.ArrayList;
 import client.model.Position;
 import client.model.Cell;
-import client.view.GameBoard;
+import client.view.SnakeBoard;
 
 public class ThreadsController extends Thread {
     ArrayList<ArrayList<Cell>> Cells = new ArrayList<ArrayList<Cell>>();
@@ -18,7 +18,7 @@ public class ThreadsController extends Thread {
     //Constructor of ControllerThread 
     public ThreadsController(Position positionDepart){
         //Get all the threads
-        Cells = GameBoard.Grid;
+        Cells = SnakeBoard.board;
 
         headSnakePos=new Position(positionDepart.x,positionDepart.y);
         directionSnake = 1;
@@ -27,7 +27,7 @@ public class ThreadsController extends Thread {
         Position headPos = new Position(headSnakePos.getX(),headSnakePos.getY());
         positions.add(headPos);
 
-        foodPosition= new Position(GameBoard.cols-2,GameBoard.rows-4);
+        foodPosition= new Position(SnakeBoard.cols-2,SnakeBoard.rows-4);
         addFood(foodPosition);
 
     }
